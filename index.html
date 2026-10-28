@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Which kind of CS pro are you?</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3fb;--card:#fff;--ink:#17142e;--mute:#625d7e;--line:#d8d3ea;--g1:rgba(120,90,220,.16);--g2:rgba(230,90,130,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#100e22;--card:#1a1731;--ink:#f1eefc;--mute:#a9a3c8;--line:#363059;--g1:rgba(120,90,220,.28);--g2:rgba(230,90,130,.16)}}
+:root[data-theme="dark"]{--bg:#100e22;--card:#1a1731;--ink:#f1eefc;--mute:#a9a3c8;--line:#363059;--g1:rgba(120,90,220,.28);--g2:rgba(230,90,130,.16)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:radial-gradient(900px 520px at 90% -10%,var(--g1),transparent),radial-gradient(700px 500px at -10% 105%,var(--g2),transparent),var(--bg);color:var(--ink);font:17px/1.6 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+.wrap{max-width:620px;margin:0 auto;padding:30px 20px 64px}
+h1,h2,.serif{font-family:"Fraunces",Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,8vw,3.4rem);line-height:1.04;margin:10px 0 16px}
+h1 em,.q em{font-weight:400}
+h2{font-size:1.3rem;margin:0 0 10px}
+p{margin:0 0 14px}
+.mute{color:var(--mute)}
+.kick{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--mute);margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.go{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:14px 30px;font-weight:600;letter-spacing:.01em;transition:transform .2s}
+.go:hover{transform:translateY(-2px)}
+.ghost{background:none;border:1.5px solid var(--ink);color:var(--ink)}
+.fan{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 32px}
+.mini{width:calc(33% - 10px);min-width:92px;background:var(--card);border:1.5px solid var(--c);border-radius:14px;padding:12px 8px;text-align:center;transform:rotate(var(--r));transition:transform .25s}
+.mini:hover{transform:rotate(0) translateY(-4px)}
+.mini b{display:block;font-size:1.8rem;line-height:1.1;color:var(--c);font-family:"Fraunces",serif;font-weight:400}
+.mini span{font-size:.82rem;line-height:1.2;display:block;margin-top:4px}
+.ticks{display:flex;gap:5px;margin:10px 0 26px}
+.ticks i{flex:1;height:4px;border-radius:4px;background:var(--line);transition:background .3s}
+.ticks i.d{background:var(--ink)}
+.q{font-family:"Fraunces",Georgia,serif;font-size:clamp(1.5rem,5.2vw,2rem);line-height:1.18;font-weight:600;margin:0 0 22px}
+.opt{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:11px;transition:transform .18s,border-color .18s}
+.opt:hover{border-color:var(--ink);transform:translateX(5px)}
+.opt.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.opt u{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid currentColor;text-decoration:none;font:italic 400 .95rem/23px "Fraunces",serif;text-align:center;opacity:.75}
+.back{background:none;border:0;color:var(--mute);padding:6px 0;margin-top:4px;text-decoration:underline;text-underline-offset:3px}
+.back[disabled]{visibility:hidden}
+.reveal{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--c);border-radius:26px;padding:34px 24px 30px;box-shadow:inset 0 0 0 6px var(--card),inset 0 0 0 7px var(--c);animation:rise .7s cubic-bezier(.2,.8,.2,1) both;transform:rotate(-1deg)}
+.glyph{display:grid;place-items:center;width:84px;height:84px;margin:0 auto 14px;border-radius:50%;background:var(--c);color:#fff;font:400 2.7rem/1 "Fraunces",serif}
+.reveal h1{margin:6px 0 6px}
+.tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:1.25rem;color:var(--c);margin-bottom:14px}
+.rule{color:var(--c);letter-spacing:.6em;margin:14px 0}
+.two{display:grid;gap:26px;margin-top:34px}
+@media(min-width:600px){.two{grid-template-columns:1fr 1fr}}
+.two ul{list-style:none;margin:0;padding:0}
+.two li{position:relative;padding-left:26px;margin-bottom:9px}
+.two li::before{position:absolute;left:0;top:0;font-family:"Fraunces",serif;font-weight:600;color:var(--c)}
+.pl li::before{content:"+"}
+.mn li::before{content:"–"}
+.again{margin-top:30px}
+.sp{position:fixed;bottom:-30px;pointer-events:none;color:var(--c);animation:up 3s ease-out forwards;z-index:9}
+@keyframes up{to{transform:translateY(-105vh) rotate(200deg);opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(30px) rotate(-4deg)}}
+@media(prefers-reduced-motion:reduce){.reveal{animation:none}.sp{display:none}.opt,.go,.mini,.ticks i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+var T={
+S:{g:"⌖",n:"The Vision Architect",c:"#3556d8",tag:"You always know the route.",d:"While everyone else is staring at today’s ticket, you’re already charting next year’s success plan. Customers trust you because you can explain exactly where this is going.",
+ st:["Turns fuzzy goals into crisp plans","Calm and credible with executives","Spots trouble months early"],
+ wk:["Can overlook small daily annoyances","Plans faster than customers can move","Gets twitchy when everything is on fire"]},
+E:{g:"❦",n:"The Vibe Keeper",c:"#c8416f",tag:"Customers stay because they like you.",d:"You can feel a mood shift over email. You turn accounts into real relationships, and that goodwill carries renewals through the bumpy quarters.",
+ st:["Builds deep, lasting trust","Defuses tense calls with real listening","Hears what customers don’t say out loud"],
+ wk:["Dodges hard conversations to keep the peace","Leans on goodwill when the data says risk","Soaks up everyone’s stress"]},
+A:{g:"☾",n:"The Spreadsheet Sorcerer",c:"#7a4fd1",tag:"You read dashboards like tea leaves.",d:"Usage curves, health scores, cohort trends: you conjure insight from them before the customer knows there’s a problem. Gut feelings need receipts, and you bring them.",
+ st:["Predicts churn before it happens","Builds playbooks others can reuse","Wins arguments with evidence"],
+ wk:["Numbers can hide the human story","Over-analyses when a call would do","Can sound a little robotic around feelings"]},
+F:{g:"ϟ",n:"The Escalation Ninja",c:"#d98a12",tag:"Fire alarm? You’re already there.",d:"Crises make you sharper, not smaller. You move fast, take ownership and leave customers feeling that someone competent has the wheel.",
+ st:["Calm and decisive under pressure","Cuts through red tape in seconds","Wins customers back at their lowest point"],
+ wk:["Becomes the permanent hero, hiding root causes","Proactive, long-range work can feel dull","Always on call, so burnout lurks"]},
+G:{g:"◈",n:"The Profit Prophet",c:"#2f9e6a",tag:"You see the upside before anyone else.",d:"You can tell where an account is headed, and where the revenue is hiding, long before the renewal date. Expansion feels like a natural next step to you, never a hard sell.",
+ st:["Spots growth opportunities naturally","Talks value in business terms","Comfortable with renewals and pricing"],
+ wk:["Customers may sense a sales agenda if timing’s off","Favours big accounts over smaller ones needing care","Can push growth before adoption has taken root"]}
+};
+var Q=[
+["A major new customer just signed. Your <em>first</em> move?",["S","Draft a 12-month success plan"],["E","Book a warm intro call to get to know the humans"],["A","Dig into the setup data and define how success is measured"],["G","Map the organisation and spot where else we can help"]],
+["Your champion just resigned. Now what?",["E","Win over the replacement with a personal hello"],["F","Move fast to stabilise anything that could slip"],["S","Redraw the stakeholder map"],["A","Check how much usage depended on that one person"]],
+["It’s 6pm on a Friday and a customer escalates.",["F","Pick up, own it and stay until it’s contained"],["E","Call and acknowledge how frustrating this must be"],["G","Treat it as a chance to prove our value"],["S","Hunt the root cause so it never repeats"]],
+["You’re preparing a quarterly review. What gets your <em>obsessive</em> attention?",["A","The numbers and trends"],["S","The story of where they’re heading"],["G","The growth conversation I can open"],["E","Who’s in the room and how they feel"]],
+["Describe your ideal Monday.",["F","An inbox on fire that I get to put out"],["S","Quiet time to plan the quarter"],["A","Dashboards showing what’s drifting"],["G","A renewal forecast and pipeline check"]],
+["“We’re thinking of not renewing.”",["E","Ask what’s going on, then really listen"],["A","Pull the data to see what the signals said"],["G","Reframe the value and offer a better-fit package"],["F","Launch a rescue plan today"]],
+["What do colleagues thank you for most?",["E","Making customers feel heard"],["S","Seeing trouble coming"],["A","Showing up with evidence"],["F","Unblocking stuck things"]],
+["A teammate is struggling. You…",["E","Listen first, fix later"],["S","Help them build a plan"],["G","Set a stretch goal with a visible win"],["F","Take a hard task off their plate"]],
+["Which metric would you proudly own?",["A","Product adoption and health score"],["G","Net revenue retention"],["S","Customer business outcomes"],["F","Time to resolution"]],
+["What do you enjoy <em>most</em> about this job?",["E","The relationships"],["G","Winning bigger together"],["F","Solving what nobody else can"],["A","Finding insight others miss"]],
+["Your calendar is suddenly empty for an hour. You…",["S","Sketch next quarter’s plan"],["E","Message a customer just to say hello"],["A","Wander through the dashboards"],["F","Clear the backlog"],["G","Review accounts that look ripe for growth"]],
+["Pick a customer success superpower.",["S","Seeing three steps ahead"],["E","Reading people’s emotions"],["A","Predicting churn from data"],["F","Staying calm in any storm"],["G","Turning any chat into an opportunity"]]
+];
+var RN=["I","II","III","IV","V"],app=document.getElementById("app"),i=0,ans=[],ord=[];
+function shuf(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
+function intro(){
+ var r=["-2deg","1.5deg","-1deg","2deg","-1.5deg"],m=Object.keys(T).map(function(k,n){return '<div class="mini" style="--c:'+T[k].c+';--r:'+r[n]+'"><b>'+T[k].g+'</b><span>'+T[k].n+'</span></div>'}).join("");
+ app.innerHTML='<p class="kick">A field guide for</p><h1>Which <em>kind</em> of customer success pro are you?</h1><p class="mute">Twelve moments from the trenches, five possible archetypes. Answer on instinct, not on what your LinkedIn headline says.</p><div class="fan">'+m+'</div><button class="go" id="st">Begin</button>';
+ document.getElementById("st").onclick=function(){i=0;ans=[];ord=Q.map(function(q){return shuf(q.slice(1))});ask()};
+}
+function ask(){
+ var q=Q[i],t="";for(var k=0;k<Q.length;k++)t+='<i'+(k<i?' class="d"':'')+'></i>';
+ var h='<p class="kick">Question '+(i+1)+' of '+Q.length+'</p><div class="ticks">'+t+'</div><h2 class="q">'+q[0]+'</h2>';
+ ord[i].forEach(function(o,n){h+='<button class="opt" data-t="'+o[0]+'"><u>'+"abcde".charAt(n)+'</u><span>'+o[1]+'</span></button>'});
+ h+='<button class="back" id="bk"'+(i?'':' disabled')+'>Back</button>';
+ app.innerHTML=h;
+ [].forEach.call(app.querySelectorAll(".opt"),function(b){b.onclick=function(){ans[i]=b.dataset.t;b.classList.add("on");setTimeout(function(){i++;i<Q.length?ask():done()},220)}});
+ document.getElementById("bk").onclick=function(){if(i){i--;ask()}};
+ window.scrollTo(0,0);
+}
+function li(a){return "<ul>"+a.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ul>"}
+function sparks(c){
+ for(var k=0;k<14;k++){var s=document.createElement("span");s.className="sp";s.textContent="✦";s.style.cssText="--c:"+c+";left:"+(Math.random()*96)+"vw;font-size:"+(12+Math.random()*18)+"px;animation-delay:"+(Math.random()*1.4)+"s";document.body.appendChild(s);setTimeout(function(x){x.remove()},5000,s)}
+}
+function done(){
+ var s={S:0,E:0,A:0,F:0,G:0},mx=0;ans.forEach(function(t){s[t]++;if(s[t]>mx)mx=s[t]});
+ var w=null;for(var k=ans.length-1;k>=0&&!w;k--)if(s[ans[k]]===mx)w=ans[k];
+ var t=T[w];
+ app.innerHTML='<div class="reveal" style="--c:'+t.c+'"><p class="kick">You are</p><div class="glyph">'+t.g+'</div><h1>'+t.n+'</h1><p class="tag">'+t.tag+'</p><div class="rule">✦ ✦ ✦</div><p style="margin:0">'+t.d+'</p></div>'+
+ '<div class="two" style="--c:'+t.c+'"><div class="pl"><h2>Strengths</h2>'+li(t.st)+'</div><div class="mn"><h2>Weaknesses</h2>'+li(t.wk)+'</div></div>'+
+ '<button class="go ghost again" id="rt">Take it again</button>';
+ document.getElementById("rt").onclick=intro;
+ window.scrollTo(0,0);sparks(t.c);
+}
+intro();
+</script>
+</body>
+</html>
